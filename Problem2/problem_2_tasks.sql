@@ -56,13 +56,13 @@ FROM
 JOIN
     order_items oi ON p.id = oi.product_id
 WHERE
-    oi.order_id = 11;
+    oi.order_id = 1;
 
 -- Perform the update
 UPDATE products p
 SET stock_quantity = p.stock_quantity - oi.quantity
 FROM order_items oi
-WHERE oi.order_id = 11
+WHERE oi.order_id = 1
 AND p.id = oi.product_id;
 
 -- Check stock after update
@@ -76,7 +76,7 @@ FROM
 JOIN
     order_items oi ON p.id = oi.product_id
 WHERE
-    oi.order_id = 11;
+    oi.order_id = 1;
 
 ----------------------------------------------------------------------------------------------------------------------------
 
@@ -88,14 +88,14 @@ FROM orders o
 JOIN customers c ON o.customer_id = c.id
 JOIN order_items oi ON o.id = oi.order_id
 JOIN products p ON oi.product_id = p.id
-WHERE o.id = 11;
+WHERE o.id = 3;
 
 -- Deleting the order items first
-DELETE FROM order_items WHERE order_id = 11;
+DELETE FROM order_items WHERE order_id = 3;
 
 -- Then, delete the order itself
-DELETE FROM orders WHERE id = 11;
+DELETE FROM orders WHERE id = 3;
 
 -- Confirm that the order and its items have been deleted
-SELECT * FROM orders WHERE id = 11;
-SELECT * FROM order_items WHERE order_id = 11;
+SELECT * FROM orders WHERE id = 3;
+SELECT * FROM order_items WHERE order_id = 3;
